@@ -1,0 +1,16 @@
+PODS:
+  - LJZ_CommonPage_Founction (0.1.0)
+
+DEPENDENCIES:
+  - LJZ_CommonPage_Founction (from `../`)
+
+EXTERNAL SOURCES:
+  LJZ_CommonPage_Founction:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  LJZ_CommonPage_Founction: dce0db24a3c496de137c836afae1e7099bb4c663
+
+PODFILE CHECKSUM: a49faccf1a379a6a0c59f95b073ac526254e3275
+
+COCOAPODS: 1.15.2

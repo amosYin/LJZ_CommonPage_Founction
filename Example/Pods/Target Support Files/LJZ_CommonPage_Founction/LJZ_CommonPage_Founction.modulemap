@@ -1,0 +1,6 @@
+framework module LJZ_CommonPage_Founction {
+  umbrella header "LJZ_CommonPage_Founction-umbrella.h"
+
+  export *
+  module * { export * }
+}

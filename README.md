@@ -22,7 +22,7 @@ pod 'LJZ_CommonPage_Founction'
 
 ## Author
 
-yinxiangyu, yinxiangyu@bangbangas.com
+yinxiangyu, 1453254169@qq.com
 
 ## License
 

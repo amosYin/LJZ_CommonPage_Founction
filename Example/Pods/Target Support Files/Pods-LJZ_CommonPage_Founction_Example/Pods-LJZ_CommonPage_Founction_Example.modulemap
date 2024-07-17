@@ -1,0 +1,6 @@
+framework module Pods_LJZ_CommonPage_Founction_Example {
+  umbrella header "Pods-LJZ_CommonPage_Founction_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
