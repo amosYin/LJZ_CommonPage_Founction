@@ -28,7 +28,7 @@
 - (void)_refreshUI{
     for (int i=0; i<_btnArray.count; i++) {
         UIButton *btn = (UIButton *)_btnArray[i];
-        btn.frame = CGRectMake(_start.y+i*_spaceWith, _start.x-i*_spaceHeight, i == 0 ? _firstBtnSize : _secondBtnSize+i*_spaceHeight, i == 0 ? _firstBtnSize : _secondBtnSize+i*_spaceHeight);
+        btn.frame = CGRectMake(_start.y+i*_spaceWith, _start.x-i*_spaceHeight, _firstBtnSize+i*_spaceHeight, _firstBtnSize+i*_spaceHeight);
     }
 }
 
@@ -44,20 +44,24 @@
         _spaceWith = 12*_kScaleX;
         _spaceHeight = 15*_kScaleX;
         _start = CGPointMake(3*_spaceHeight, 0);
-        _firstBtnSize = 0;
-        _secondBtnSize = 70*_kScaleX;
+        _firstBtnSize = 50;
+//        _secondBtnSize = 70*_kScaleX;
         
         
         for (int i=0; i<4; i++) {
-            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(_start.y+i*_spaceWith, _start.x-i*_spaceHeight, i == 0 ? _firstBtnSize : _secondBtnSize+i*_spaceHeight, i == 0 ? _firstBtnSize : _secondBtnSize+i*_spaceHeight)];
+            UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(_start.y+i*_spaceWith, _start.x-i*_spaceHeight, _firstBtnSize+i*_spaceHeight, _firstBtnSize+i*_spaceHeight)];
             if (i == 0) {
+                btn.alpha = 0;
                 btn.backgroundColor = UIColor.yellowColor;
             }else if (i == 1) {
                 btn.backgroundColor = UIColor.purpleColor;
+                btn.alpha = 0.25;
             }else if (i == 2) {
                 btn.backgroundColor = UIColor.blueColor;
+                btn.alpha = 0.5;
             }else if (i == 3) {
                 btn.backgroundColor = UIColor.grayColor;
+                btn.alpha = 1;
             }
             btn.layer.cornerRadius = 8;
             btn.layer.masksToBounds = YES;
@@ -73,6 +77,7 @@
 #pragma mark - click
 - (void)btnClick:(UIButton *)sender{
     UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(_start.y, _start.x, _firstBtnSize, _firstBtnSize)];
+    btn.alpha = 0;
     btn.backgroundColor = UIColor.blackColor;
     btn.layer.cornerRadius = 8;
     btn.layer.masksToBounds = YES;
@@ -86,14 +91,29 @@
     __weak __typeof(&*self)weakSelf = self;
     for (int i=0; i<_btnArray.count; i++) {
         UIButton *btn = (UIButton *)_btnArray[i];
-        [UIView animateWithDuration:1.0f animations:^{
+        // 动画持续时间秒
+        // 动画开始前的延迟时间
+        // 弹簧系数，控制动画的弹性
+        // 初始弹簧速度
+        // 动画曲线选项
+        [UIView animateWithDuration:0.4f delay:0.0 usingSpringWithDamping:1.0 initialSpringVelocity:0.0 options:UIViewAnimationOptionCurveLinear animations:^{
             if (i == 0) {
+                btn.alpha = 0;
                 btn.frame = CGRectMake(weakSelf.start.y+i*weakSelf.spaceWith, weakSelf.start.x-i*weakSelf.spaceHeight, weakSelf.firstBtnSize, weakSelf.firstBtnSize);
+            }else if (i == 1) {
+                btn.alpha = 0.25;
+                btn.frame = CGRectMake(weakSelf.start.y+i*weakSelf.spaceWith, weakSelf.start.x-i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight);
+            }else if (i == 2) {
+                btn.alpha = 0.5;
+                btn.frame = CGRectMake(weakSelf.start.y+i*weakSelf.spaceWith, weakSelf.start.x-i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight);
+            }else if (i == 3) {
+                btn.alpha = 1;
+                btn.frame = CGRectMake(weakSelf.start.y+i*weakSelf.spaceWith, weakSelf.start.x-i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight);
             }else if (i == weakSelf.btnArray.count-1) {
                 btn.alpha = 0;
-                btn.frame = CGRectMake(weakSelf.start.y+i*weakSelf.spaceWith + 100, weakSelf.start.x-i*weakSelf.spaceHeight, weakSelf.secondBtnSize+i*weakSelf.spaceHeight, weakSelf.secondBtnSize+i*weakSelf.spaceHeight);
-            }else{
-                btn.frame = CGRectMake(weakSelf.start.y+i*weakSelf.spaceWith, weakSelf.start.x-i*weakSelf.spaceHeight, weakSelf.secondBtnSize+i*weakSelf.spaceHeight, weakSelf.secondBtnSize+i*weakSelf.spaceHeight);
+                btn.frame = CGRectMake(weakSelf.start.y+i*weakSelf.spaceWith + 100, weakSelf.start.x-i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight, weakSelf.firstBtnSize+i*weakSelf.spaceHeight);
+                // 设置旋转动画的结束状态
+                btn.transform = CGAffineTransformRotate(btn.transform, M_PI * 1/18); // 旋转360度
             }
         } completion:^(BOOL finished) {
             NSLog(@"index:%d",i);
@@ -101,7 +121,8 @@
                 [weakSelf.btnArray removeLastObject];
                 [btn removeFromSuperview];
             }
-        }];
+        }]; // 动画完成后的回调（这里不需要回调，所以是nil）
+        
     }
     
     

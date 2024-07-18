@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @property(nonatomic,assign)CGPoint start;
 @property(nonatomic,assign)CGFloat firstBtnSize;
-@property(nonatomic,assign)CGFloat secondBtnSize;
+//@property(nonatomic,assign)CGFloat secondBtnSize;
 @property(nonatomic,assign)CGFloat spaceWith;
 @property(nonatomic,assign)CGFloat spaceHeight;
 
