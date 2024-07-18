@@ -1,15 +1,22 @@
 PODS:
-  - LJZ_CommonPage_Founction (0.1.0)
+  - LJZ_CommonPage_Founction (0.1.0):
+    - Masonry
+  - Masonry (1.1.0)
 
 DEPENDENCIES:
   - LJZ_CommonPage_Founction (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
 
 EXTERNAL SOURCES:
   LJZ_CommonPage_Founction:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LJZ_CommonPage_Founction: dce0db24a3c496de137c836afae1e7099bb4c663
+  LJZ_CommonPage_Founction: d47983c113cff31e5a50dd08d212e17e6104ce45
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
 PODFILE CHECKSUM: a49faccf1a379a6a0c59f95b073ac526254e3275
 

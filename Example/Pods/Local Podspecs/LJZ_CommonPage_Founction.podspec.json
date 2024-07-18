@@ -3,20 +3,25 @@
   "version": "0.1.0",
   "summary": "A short description of LJZ_CommonPage_Founction.",
   "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/yinxiangyu/LJZ_CommonPage_Founction",
+  "homepage": "https://github.com/amosYin/LJZ_CommonPage_Founction",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "yinxiangyu": "yinxiangyu@bangbangas.com"
+    "yinxiangyu": "1453254169@qq.com"
   },
   "source": {
-    "git": "https://github.com/yinxiangyu/LJZ_CommonPage_Founction.git",
+    "git": "https://github.com/amosYin/LJZ_CommonPage_Founction.git",
     "tag": "0.1.0"
   },
   "platforms": {
     "ios": "10.0"
   },
-  "source_files": "LJZ_CommonPage_Founction/Classes/**/*"
+  "source_files": "LJZ_CommonPage_Founction/Classes/**/*",
+  "dependencies": {
+    "Masonry": [
+
+    ]
+  }
 }

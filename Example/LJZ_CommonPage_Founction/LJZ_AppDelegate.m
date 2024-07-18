@@ -7,12 +7,15 @@
 //
 
 #import "LJZ_AppDelegate.h"
+#import "LJZ_FirstPageViewController.h"
 
 @implementation LJZ_AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    LJZ_FirstPageViewController *vc = [LJZ_FirstPageViewController new];
+    self.window.rootViewController = vc;
     return YES;
 }
 

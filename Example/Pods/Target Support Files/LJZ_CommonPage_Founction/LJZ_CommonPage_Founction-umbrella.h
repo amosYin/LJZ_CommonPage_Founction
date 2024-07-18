@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "LJZ_FirstPageViewController.h"
+#import "LJZ_FirstPage_CustomImageView.h"
 
 FOUNDATION_EXPORT double LJZ_CommonPage_FounctionVersionNumber;
 FOUNDATION_EXPORT const unsigned char LJZ_CommonPage_FounctionVersionString[];
