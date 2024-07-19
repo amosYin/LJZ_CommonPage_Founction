@@ -15,8 +15,6 @@
 #import "LJZ_FirstPage_CustomImageView.h"
 #import "LJZ_FirstPage_CustomRefreshImageView.h"
 
-#import <SDWebImage/UIImageView+WebCache.h>
-
 FOUNDATION_EXPORT double LJZ_CommonPage_FounctionVersionNumber;
 FOUNDATION_EXPORT const unsigned char LJZ_CommonPage_FounctionVersionString[];
 

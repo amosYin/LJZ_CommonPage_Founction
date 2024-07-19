@@ -1,7 +1,7 @@
 PODS:
-  - LJZ_CommonPage_Founction (0.1.0):
+  - LJZ_CommonPage_Founction (0.1.2):
     - Masonry
-    - SDWebImage (= 4.4.8)
+    - SDWebImage
   - Masonry (1.1.0)
   - SDWebImage (4.4.8):
     - SDWebImage/Core (= 4.4.8)
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LJZ_CommonPage_Founction: 6bca39d6ab482c285f913ac5fd08b9d3f8ff61ee
+  LJZ_CommonPage_Founction: a949553519ec2e264bc9f72631fd1cd5011766fb
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
 
