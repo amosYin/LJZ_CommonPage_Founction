@@ -36,8 +36,8 @@
     for (int i = 0; i<6; i++) {
         LJZ_FirstPage_CustomImageModel *model = [[LJZ_FirstPage_CustomImageModel alloc] init];
         model.providerName = [NSString stringWithFormat:@"河北省-%d",i];
-        model.cityName = @"石家庄";
-        model.countryName = @"中国";
+        model.cityName = @"石家庄阿斯顿发送到发";
+        model.countryName = @"中国大点的地方";
         model.residenceYear = @"2024-07-19 09:33";
         if (i == 0) {
             model.photo = @"https://q1.itc.cn/q_70/images03/20240430/59fe8596e4cb4824a6f27315328a3559.jpeg";

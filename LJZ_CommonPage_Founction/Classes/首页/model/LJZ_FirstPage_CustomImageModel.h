@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property(nonatomic,copy)NSString *residenceYear;
 @property(nonatomic,copy)NSString *photo;
 @property(nonatomic,copy)NSString *providerPageUrl;
+@property(nonatomic,copy)NSString *name;
 @end
 
 NS_ASSUME_NONNULL_END
