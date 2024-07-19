@@ -14,6 +14,8 @@
 @property(nonatomic,assign)CGFloat kScaleX;
 @property(nonatomic,assign)NSInteger index;
 @property(nonatomic,assign)NSInteger lastIndex;
+
+@property(nonatomic,strong)NSMutableArray *modelArray;
 @end
 
 @implementation LJZ_FirstPage_CustomRefreshImageView
@@ -21,10 +23,27 @@
 #pragma mark - setter
 - (void)setDataSource:(NSMutableArray *)dataSource{
     _dataSource = dataSource;
+    _modelArray = [NSMutableArray array];
+    if (_dataSource.count<4) {
+        if (_dataSource.count == 0) {
+            _modelArray = [NSMutableArray arrayWithArray:@[[LJZ_FirstPage_CustomImageModel new],[LJZ_FirstPage_CustomImageModel new],[LJZ_FirstPage_CustomImageModel new],[LJZ_FirstPage_CustomImageModel new]]];
+        }
+        if (_dataSource.count == 1) {
+            _modelArray = [NSMutableArray arrayWithArray:@[_dataSource[0],_dataSource[0],_dataSource[0],_dataSource[0]]];
+        }
+        if (_dataSource.count == 2) {
+            _modelArray = [NSMutableArray arrayWithArray:@[_dataSource[0],_dataSource[1],_dataSource[0],_dataSource[1]]];
+        }
+        if (_dataSource.count == 3) {
+            _modelArray = [NSMutableArray arrayWithArray:@[_dataSource[0],_dataSource[1],_dataSource[2],_dataSource[0],_dataSource[1],_dataSource[2]]];
+        }
+    }else{
+        _modelArray = [NSMutableArray arrayWithArray:_dataSource];
+    }
     //
     for (int i=0; i<_viewArray.count; i++) {
         UIImageView *img = (UIImageView *)_viewArray[i];
-        LJZ_FirstPage_CustomImageModel *model = _dataSource[i];
+        LJZ_FirstPage_CustomImageModel *model = _modelArray[i];
         [img sd_setImageWithURL:[NSURL URLWithString:model.photo] placeholderImage:[UIImage imageNamed:@""] completed:nil];
         
     }
@@ -33,15 +52,25 @@
 #pragma mark - click
 - (void)tap:(UITapGestureRecognizer *)gesture{
     if (_clickBlock) {// 返回移除的model及index
-        _clickBlock(_dataSource[_index],_index);
+        NSInteger x = 0;
+        if (_dataSource.count == 0 || _dataSource.count == 1) {
+            x = 0;
+        }else if (_dataSource.count == 2) {
+            x = _index % 2;
+        }else if (_dataSource.count == 3) {
+            x = _index % 3;
+        }else{
+            x = _index;
+        }
+        _clickBlock(_modelArray[_index], x);
     }
-    if (_lastIndex < _dataSource.count-1) {
+    if (_lastIndex < _modelArray.count-1) {
         _lastIndex++;
     }else{
         _lastIndex = 0;
     }
-    LJZ_FirstPage_CustomImageModel *model = _dataSource[_lastIndex];
-    NSLog(@"addImageView:%@-lastIndex:%ld",model.photo,_lastIndex);
+    LJZ_FirstPage_CustomImageModel *model = _modelArray[_lastIndex];
+//    NSLog(@"addImageView:%@-lastIndex:%ld",model.photo,_lastIndex);
     
     UIImageView *img = [UIImageView new];
     img.alpha = 0;
@@ -103,7 +132,7 @@
         }]; // 动画完成后的回调（这里不需要回调，所以是nil）
     }
     
-    if (_index < _dataSource.count-1) {
+    if (_index < _modelArray.count-1) {
         _index++;
     }else{
         _index = 0;
@@ -124,6 +153,7 @@
         _index = 0;
         _lastIndex = 3;
         _viewArray = [NSMutableArray array];
+        _modelArray = [NSMutableArray array];
         _kScaleX = [UIScreen mainScreen].bounds.size.width / 375.f;
         
         _spaceWith = 12*_kScaleX;

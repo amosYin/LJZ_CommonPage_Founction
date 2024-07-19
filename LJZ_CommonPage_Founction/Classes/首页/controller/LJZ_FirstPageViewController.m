@@ -33,7 +33,7 @@
     self.view.backgroundColor = UIColor.redColor;
     
     NSMutableArray *arr = [NSMutableArray array];
-    for (int i = 0; i<11; i++) {
+    for (int i = 0; i<6; i++) {
         LJZ_FirstPage_CustomImageModel *model = [[LJZ_FirstPage_CustomImageModel alloc] init];
         model.providerName = [NSString stringWithFormat:@"河北省-%d",i];
         model.cityName = @"石家庄";
