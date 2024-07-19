@@ -1,7 +1,11 @@
 PODS:
   - LJZ_CommonPage_Founction (0.1.0):
     - Masonry
+    - SDWebImage (= 4.4.8)
   - Masonry (1.1.0)
+  - SDWebImage (4.4.8):
+    - SDWebImage/Core (= 4.4.8)
+  - SDWebImage/Core (4.4.8)
 
 DEPENDENCIES:
   - LJZ_CommonPage_Founction (from `../`)
@@ -9,14 +13,16 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Masonry
+    - SDWebImage
 
 EXTERNAL SOURCES:
   LJZ_CommonPage_Founction:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LJZ_CommonPage_Founction: d47983c113cff31e5a50dd08d212e17e6104ce45
+  LJZ_CommonPage_Founction: 6bca39d6ab482c285f913ac5fd08b9d3f8ff61ee
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: 783af2c3fa36291a250030c4752ee370a9a51d13
 
 PODFILE CHECKSUM: a49faccf1a379a6a0c59f95b073ac526254e3275
 

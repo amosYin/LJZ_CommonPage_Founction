@@ -8,6 +8,9 @@
 #import "LJZ_FirstPageViewController.h"
 #import "Masonry/Masonry.h"
 #import "LJZ_FirstPage_CustomImageView.h"
+#import "LJZ_FirstPage_CustomRefreshImageView.h"
+#import "LJZ_FirstPage_CustomImageModel.h"
+
 @interface LJZ_FirstPageViewController ()
 {
     
@@ -29,19 +32,67 @@
     // Do any additional setup after loading the view.
     self.view.backgroundColor = UIColor.redColor;
     
+    NSMutableArray *arr = [NSMutableArray array];
+    for (int i = 0; i<11; i++) {
+        LJZ_FirstPage_CustomImageModel *model = [[LJZ_FirstPage_CustomImageModel alloc] init];
+        model.providerName = [NSString stringWithFormat:@"河北省-%d",i];
+        model.cityName = @"石家庄";
+        model.countryName = @"中国";
+        model.residenceYear = @"2024-07-19 09:33";
+        if (i == 0) {
+            model.photo = @"https://q1.itc.cn/q_70/images03/20240430/59fe8596e4cb4824a6f27315328a3559.jpeg";
+        }else if (i == 1) {
+            model.photo = @"https://wxls-cms.oss-cn-hangzhou.aliyuncs.com/online/2024-04-18/218da022-f4bf-456a-99af-5cb8e157f7b8.jpg";
+        }else if (i == 2) {
+            model.photo = @"https://wx4.sinaimg.cn/mw690/0072z9AKly1hr7qwzgk26j31401dtn2r.jpg";
+        }else if (i == 3) {
+            model.photo = @"https://inews.gtimg.com/om_bt/OGlQWfsaAoKkuCcMZ2o9IVEPqd-72DQy5EAN02XBHUwfYAA/641";
+        }else if (i == 4) {
+            model.photo = @"https://img0.baidu.com/it/u=3399087670,1367521109&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=625";
+        }else if (i == 5) {
+            model.photo = @"https://wx2.sinaimg.cn/mw690/008kP1QOgy1hra4yycsulj30u01hcdvc.jpg";
+        }else if (i == 6) {
+            model.photo = @"https://img1.baidu.com/it/u=2629873009,4289466017&fm=253&fmt=auto&app=138&f=JPEG?w=800&h=1146";
+        }else if (i == 7) {
+            model.photo = @"https://img2.baidu.com/it/u=153122728,4086122618&fm=253&fmt=auto&app=120&f=JPEG?w=500&h=667";
+        }else if (i == 8) {
+            model.photo = @"https://wx4.sinaimg.cn/mw690/001rOLfPly1hraxdzfoacj60u01hck4v02.jpg";
+        }else if (i == 9) {
+            model.photo = @"https://q1.itc.cn/q_70/images03/20240430/59fe8596e4cb4824a6f27315328a3559.jpeg";
+        }else{
+            model.photo = @"https://inews.gtimg.com/om_bt/OGlQWfsaAoKkuCcMZ2o9IVEPqd-72DQy5EAN02XBHUwfYAA/641";
+        }
+        
+        model.providerPageUrl = @"www.baidu.com";
+        [arr addObject:model];
+    }
     
-    LJZ_FirstPage_CustomImageView *customimgView = [LJZ_FirstPage_CustomImageView new];
-    customimgView.spaceHeight = 20;
-    [self.view addSubview:customimgView];
-    [customimgView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(200);
-        make.top.mas_equalTo(200);
-        make.width.mas_equalTo(customimgView.spaceWith*3 + (customimgView.spaceHeight*3 + customimgView.firstBtnSize) + 0);
-        make.height.mas_equalTo((3*customimgView.spaceHeight + customimgView.firstBtnSize) + 0);
+    
+    LJZ_FirstPage_CustomRefreshImageView *v = [LJZ_FirstPage_CustomRefreshImageView new];
+    v.userInteractionEnabled = YES;
+    v.dataSource = arr;
+    [v setClickBlock:^(LJZ_FirstPage_CustomImageModel * _Nonnull mod, NSInteger index) {
+        NSLog(@"click index:%ld,url:%@,providerName:%@",index,mod.photo,mod.providerName);
+    }];
+    [self.view addSubview:v];
+    [v mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.mas_equalTo(10);
+        make.top.mas_equalTo(50);
     }];
     
+    
+    
+//    LJZ_FirstPage_CustomImageView *customimgView = [LJZ_FirstPage_CustomImageView new];
+//    customimgView.spaceHeight = 20;
+//    [self.view addSubview:customimgView];
+//    [customimgView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.mas_equalTo(200);
+//        make.top.mas_equalTo(200);
+//        make.width.mas_equalTo(customimgView.spaceWith*3 + (customimgView.spaceHeight*3 + customimgView.firstBtnSize) + 0);
+//        make.height.mas_equalTo((3*customimgView.spaceHeight + customimgView.firstBtnSize) + 0);
+//    }];
+    
 
-//    UIButton *logoImgBtn = [[UIButton alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.size.width/2-20, customimgView.frame.origin.y + customimgView.frame.size.height, 40, 40)];
     _logoImgBtn = [UIButton new];
     [_logoImgBtn setTitle:@"选择按钮" forState:UIControlStateNormal];
     _logoImgBtn.titleLabel.font = [UIFont systemFontOfSize:12];
@@ -50,7 +101,7 @@
     [self.view addSubview:_logoImgBtn];
     [_logoImgBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.view.mas_centerX).offset(-20);
-        make.top.mas_equalTo(customimgView.mas_bottom);
+        make.top.mas_equalTo(v.mas_bottom);
         make.width.mas_equalTo(60);
         make.height.mas_equalTo(20);
     }];
